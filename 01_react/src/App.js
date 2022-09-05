@@ -1,7 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  const handleNameChange = () => {
+    const names = ["Mati", "Paula", "Ola"];
+    const int = Math.floor(Math.random() * 3);
+    return names[int];
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +23,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>{`Hello ${handleNameChange()}!`}</p>
+        <p>{[1, 2, 3]}</p>
+        <p>[1, 2, 3]</p>
       </header>
     </div>
   );
