@@ -1,31 +1,15 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Header from "./Header";
+import Contents from "./Contents";
+import Footer from "./Footer";
 
 function App() {
-  const handleNameChange = () => {
-    const names = ["Mati", "Paula", "Ola"];
-    const int = Math.floor(Math.random() * 3);
-    return names[int];
-  };
-
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>{`Hello ${handleNameChange()}!`}</p>
-        <p>{[1, 2, 3]}</p>
-        <p>[1, 2, 3]</p>
+        <Header />
+        <Contents />
+        <Footer />
       </header>
     </div>
   );
