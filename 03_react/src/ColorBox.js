@@ -6,7 +6,7 @@ const ColorBox = ({ color, hexValue, isDarkText }) => {
       className="box"
       style={{ 
         backgroundColor: color,
-        color: isDarkText ? "#000" : "#fff" 
+        color: isDarkText ? "black" : "white", 
         }}>
       
       <p>{color ? color : "Empty value"}</p>
@@ -20,3 +20,15 @@ ColorBox.defaultProps = {
 }
 
 export default ColorBox;
+
+
+<section
+      className="box"
+      style={{ 
+        backgroundColor: color,
+        color: isDarkText ? "#000" : "#fff" 
+        }}>
+      
+      <p>{color ? color : "Empty value"}</p>
+      <p>{hexValue ? hexValue : null}</p>
+    </section>
