@@ -1,0 +1,21 @@
+.nav_ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  background-color: rgb(194, 236, 225);
+}
+
+.nav_li {
+  padding: 1em;
+  flex-grow: 1;
+  text-align: center;
+  border: 1px #999 solid;
+}
+
+.nav_li:focus, .nav_li:active {
+  background-color: #333;
+  color: #fff;
+}
