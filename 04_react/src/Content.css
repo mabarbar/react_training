@@ -1,8 +1,0 @@
-.main_ul {
-  display: flex;
-  flex-direction: column;
-}
-
-.main_li {
-  padding: 1em;
-}
