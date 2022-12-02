@@ -1,7 +1,6 @@
-import "./App.css";
-import Form from "./Form";
 import { useState, useEffect } from "react";
-import ObjectsList from "./ObjectsList.js";
+import Form from "./Form";
+import List from "./List.js";
 
 function App() {
   const API_URL = "https://jsonplaceholder.typicode.com/";
@@ -13,7 +12,6 @@ function App() {
       try {
         const response = await fetch(`${API_URL}${reqType}`);
         const data = await response.json();
-        console.log(data);
         setItems(data);
       } catch (err) {
         console.log(err);
@@ -24,9 +22,9 @@ function App() {
   }, [reqType]);
 
   return (
-    <div>
+    <div className="App">
       <Form reqType={reqType} setReqType={setReqType} />
-      <ObjectsList items={items} />
+      <List items={items} />
     </div>
   );
 }

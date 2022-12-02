@@ -1,7 +1,11 @@
 import React from "react";
 
-const ListItem = ({ users, posts, comments}) => {
-  return <li className="main_li">{JSON.stringify(users)}</li>;
+const ListItem = ({ item }) => {
+  return (
+    <li>
+      {JSON.stringify(item)}
+    </li>
+  );
 };
 
 export default ListItem;
