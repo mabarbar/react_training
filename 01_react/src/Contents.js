@@ -4,6 +4,7 @@ import { useState } from "react";
 const Contents = () => {
   const [name, setName] = useState("Mateusz");
   const [count, setCount] = useState(0);
+  
   const handleNameChange = () => {
     const names = ["Mati", "Paula", "Ola"];
     const int = Math.floor(Math.random() * 3);
