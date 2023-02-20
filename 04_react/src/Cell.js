@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Cell = ({ cellData }) => {
-  return (
-    <td>
-      {cellData}
-    </td>
-  )
-}
+  return <td>{cellData}</td>;
+};
 
-export default Cell
+export default Cell;
