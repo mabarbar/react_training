@@ -1,0 +1,10 @@
+.formButton {
+  height: 3.5em;
+  width: 33.3%;
+  font-size: 1rem;
+}
+
+.formButton:hover {
+  background-color: black;
+  color: white;
+}
