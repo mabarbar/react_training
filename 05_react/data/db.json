@@ -2,9 +2,15 @@
   "posts": [
     {
       "id": 1,
-      "title": "Test123",
-      "datetime": "February 21, 2023 11:17:05 PM",
-      "body": "Test123\n"
+      "title": "Food",
+      "datetime": "February 21, 2023 11:25:46 PM",
+      "body": "Krakersy i krewetki"
+    },
+    {
+      "id": 2,
+      "title": "Toys",
+      "datetime": "February 21, 2023 11:27:09 PM",
+      "body": "Bricks and dinosaurs"
     }
   ]
 }
