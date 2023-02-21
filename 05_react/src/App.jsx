@@ -9,6 +9,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import api from "./api/posts";
+import useWindowSize from "./hooks/useWindowSize";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -19,6 +20,7 @@ function App() {
   const [editTitle, setEditTitle] = useState("");
   const [editBody, setEditBody] = useState("");
   const navigate = useNavigate();
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -99,12 +101,16 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Layout search={search} setSearch={setSearch} />}
+          element={
+            <Layout search={search} setSearch={setSearch} width={width} />
+          }
         >
           <Route index element={<Home posts={searchResults} />} />
-          
+
           <Route path="post">
-            <Route index element={
+            <Route
+              index
+              element={
                 <NewPost
                   handleSubmit={handleSubmit}
                   postTitle={postTitle}
@@ -112,7 +118,8 @@ function App() {
                   postBody={postBody}
                   setPostBody={setPostBody}
                 />
-              }/>
+              }
+            />
 
             <Route
               path=":id"
@@ -120,20 +127,23 @@ function App() {
             />
           </Route>
           <Route path="/edit/:id">
-            <Route index element={
-              <EditPost
-                posts={posts}
-                handleEdit={handleEdit}
-                editTitle={editTitle}
-                setEditTitle={setEditTitle}
-                editBody={editBody}
-                setEditBody={setEditBody}
-              />
-            }/>
+            <Route
+              index
+              element={
+                <EditPost
+                  posts={posts}
+                  handleEdit={handleEdit}
+                  editTitle={editTitle}
+                  setEditTitle={setEditTitle}
+                  editBody={editBody}
+                  setEditBody={setEditBody}
+                />
+              }
+            />
           </Route>
 
           <Route path="about" element={<About />} />
-          
+
           <Route path="*" element={<Missing />} />
         </Route>
       </Routes>
