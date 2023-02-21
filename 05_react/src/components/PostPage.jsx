@@ -12,13 +12,18 @@ const PostPage = ({ posts, handleDelete }) => {
             <h2>{post.title}</h2>
             <p className="postDate">{post.datetime}</p>
             <p className="postDate">{post.body}</p>
-            <button onClick={() => handleDelete(post.id)}>
+            <Link to={`/edit/${post.id}`}>
+              <button className="editButton">Edit Post</button>
+            </Link>
+            <button
+              className="deleteButton"
+              onClick={() => handleDelete(post.id)}
+            >
               Delete Post
             </button>
           </>
         )}
-        {
-          !post && 
+        {!post && (
           <>
             <h2>Post Not Found</h2>
             <p>Well, that's disappointing</p>
@@ -26,7 +31,7 @@ const PostPage = ({ posts, handleDelete }) => {
               <Link to="/">Visit Our Homepage</Link>
             </p>
           </>
-        }
+        )}
       </article>
     </main>
   );
