@@ -36,6 +36,21 @@ function App() {
   ]);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.prevent.default()
+    const id = posts.length ? posts.length + 1 : 1;
+    const datetime = '';
+  };
+
+  const handleDelete = (id) => {
+    const postsList = posts.filter((post) => post.id !== id);
+    setPosts(postsList);
+    navigate("/");
+  };
 
   return (
     <div className="App">
@@ -44,10 +59,24 @@ function App() {
           path="/"
           element={<Layout search={search} setSearch={setSearch} />}
         >
-          <Route index element={<Home posts={posts}/>} />
+          <Route index element={<Home posts={posts} />} />
           <Route path="post">
-            <Route index element={<NewPost />} />
-            <Route path=":id" element={<PostPage />} />
+            <Route
+              index
+              element={
+                <NewPost
+                  handleSubmit={handleSubmit}
+                  postTitle={postTitle}
+                  setPostTitle={setPostTitle}
+                  postBody={postBody}
+                  setPostBody={setPostBody}
+                />
+              }
+            />
+            <Route
+              path=":id"
+              element={<PostPage posts={posts} handleDelete={handleDelete} />}
+            />
           </Route>
           <Route path="about" element={<About />} />
           <Route path="*" element={<Missing />} />
