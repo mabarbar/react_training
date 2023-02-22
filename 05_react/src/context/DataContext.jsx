@@ -1,19 +1,13 @@
-import Layout from "./components/Layout";
-import Home from "./components/Home";
-import NewPost from "./components/NewPost";
-import PostPage from "./components/PostPage";
-import About from "./components/About";
-import Missing from "./components/Missing";
-import EditPost from "./components/EditPost";
+import { createContext, useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { format } from "date-fns";
-import api from "./api/posts";
-import useWindowSize from "./hooks/useWindowSize";
-import useAxiosFetch from "./hooks/useAxiosFetch";
-import { DataProvider } from "./context/DataContext";
+import api from "../api/posts";
+import useWindowSize from "../hooks/useWindowSize";
+import useAxiosFetch from "../hooks/useAxiosFetch";
 
-function App() {
+const DataContext = createContext({});
+
+export const DataProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -41,7 +35,6 @@ function App() {
 
     setSearchResults(filteredResults.reverse());
   }, [posts, search]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
@@ -88,69 +81,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <DataProvider>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout search={search} setSearch={setSearch} width={width} />
-            }
-          >
-            <Route
-              index
-              element={
-                <Home
-                  posts={searchResults}
-                  fetchError={fetchError}
-                  isLoading={isLoading}
-                />
-              }
-            />
-
-            <Route path="post">
-              <Route
-                index
-                element={
-                  <NewPost
-                    handleSubmit={handleSubmit}
-                    postTitle={postTitle}
-                    setPostTitle={setPostTitle}
-                    postBody={postBody}
-                    setPostBody={setPostBody}
-                  />
-                }
-              />
-
-              <Route
-                path=":id"
-                element={<PostPage posts={posts} handleDelete={handleDelete} />}
-              />
-            </Route>
-            <Route path="/edit/:id">
-              <Route
-                index
-                element={
-                  <EditPost
-                    posts={posts}
-                    handleEdit={handleEdit}
-                    editTitle={editTitle}
-                    setEditTitle={setEditTitle}
-                    editBody={editBody}
-                    setEditBody={setEditBody}
-                  />
-                }
-              />
-            </Route>
-
-            <Route path="about" element={<About />} />
-
-            <Route path="*" element={<Missing />} />
-          </Route>
-        </Routes>
-      </DataProvider>
-    </div>
+    <DataContext.Provider value={{ width }}>{children}</DataContext.Provider>
   );
-}
+};
 
-export default App;
+export default DataContext;
