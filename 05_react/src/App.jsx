@@ -6,7 +6,6 @@ import About from "./components/About";
 import Missing from "./components/Missing";
 import EditPost from "./components/EditPost";
 import { Route, Routes } from "react-router-dom";
-import { DataProvider } from "./context/DataContext";
 
 function App() {
   return (
